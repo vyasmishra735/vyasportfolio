@@ -1,0 +1,145 @@
+/* =========================================================================
+   ANIMATIONS & MOTION SYSTEM
+   ========================================================================= */
+
+@keyframes pulseEmerald {
+  0% {
+    box-shadow: 0 0 0 0 rgba(109, 204, 174, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(109, 204, 174, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(109, 204, 174, 0);
+  }
+}
+
+@keyframes pulseGold {
+  0% {
+    box-shadow: 0 0 0 0 rgba(213, 183, 121, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(213, 183, 121, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(213, 183, 121, 0);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes shimmerGold {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes subtleGridDrift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.animate-pulse-emerald {
+  animation: pulseEmerald 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.animate-pulse-gold {
+  animation: pulseGold 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radarSweep 10s linear infinite;
+}
+
+/* =========================================================================
+   CUSTOM LUXURY CURSOR
+   (Enabled on desktop, hidden on touch/mobile and reduced-motion)
+   ========================================================================= */
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--gold-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(213, 183, 121, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.custom-cursor-ring.cursor-hover {
+  width: 60px;
+  height: 60px;
+  border-color: var(--gold-primary);
+  background-color: rgba(213, 183, 121, 0.08);
+}
+
+@media (pointer: coarse), (hover: none) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* =========================================================================
+   REDUCED MOTION SUPPORT
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
